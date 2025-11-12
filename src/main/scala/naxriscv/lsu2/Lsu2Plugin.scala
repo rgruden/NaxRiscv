@@ -967,7 +967,7 @@ class Lsu2Plugin(var lqSize: Int,
         def fromAgu[T <: Data](that : Stageable[T]) = stage(that, "agu")
 
         val wakeRob = Flow(WakeRob())
-        wakeRob.valid := isFireing && HIT_SPECULATION
+        wakeRob.valid := isFireing && HIT_SPECULATION && fromAgu(WRITE_RD)
         wakeRob.robId := fromAgu(ROB.ID)
 
         val wakeRf = Flow(WakeRegFile(decoder.REGFILE_RD, decoder.PHYS_RD, needBypass = false, withRfBypass = true, rfLatency = 2))

@@ -1038,7 +1038,7 @@ class LsuPlugin(var lqSize: Int,
           import stage._
 
           val wakeRob = Flow(WakeRob())
-          wakeRob.valid := isFireing && HIT_SPECULATION
+          wakeRob.valid := isFireing && HIT_SPECULATION && HIT_SPECULATION_WRITE_RD
           wakeRob.robId := ROB.ID
 
           val wakeRf = Flow(WakeRegFile(decoder.REGFILE_RD, decoder.PHYS_RD, needBypass = false, withRfBypass = true, rfLatency = 2))
